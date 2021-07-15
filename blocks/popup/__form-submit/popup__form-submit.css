@@ -1,0 +1,14 @@
+.popup__form-submit {
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+    background: #000000;
+    border-radius: 2px;
+    transition: .3s;;
+}
+
+.popup__form-submit:hover {
+    opacity: .8;;
+}
