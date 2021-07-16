@@ -13,5 +13,15 @@
 }
 
 .popup__form-submit:hover {
-    opacity: .8;;
+    opacity: .8;
+    ;
+}
+
+@media screen and (min-width: 320px) and (max-width: 580px) {
+    .popup__form-submit {
+        min-height: 46px;
+        font-size: 14px;
+        line-height: 17px;
+        margin-top: 45px;
+    }
 }
