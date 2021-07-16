@@ -1,5 +1,6 @@
 .popup__form-submit {
-    font-family: Inter;
+    min-height: 50px;
+    margin-top: 48px;
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
