@@ -25,17 +25,11 @@ let jobInput = document.querySelector('.popup__form-input-job');// Воспол�
 // Обработчик «отправки» формы, хотя пока она никуда отправляться не будет
 function formSubmitHandler (evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы. Так мы можем определить свою логику отправки. О том, как это делать, расскажем позже.
-
-    // Получите значение полей jobInput и nameInput из свойства value
-    // Выберите элементы, куда должны быть вставлены значения полей
-        // Вставьте новые значения с помощью textContent
-    
-    let profileName = document.querySelector('.profile__name');
-    let profileJob = document.querySelector('.profile__job');
-    profileName.textContent = nameInput.value;
+    let profileName = document.querySelector('.profile__name'); // Получите значение полей jobInput и nameInput из свойства value
+    let profileJob = document.querySelector('.profile__job');  // Выберите элементы, куда должны быть вставлены значения полей
+    profileName.textContent = nameInput.value;                 // Вставьте новые значения с помощью textContent
     profileJob.textContent = jobInput.value;
-    popupClose();
-    
+    popupClose();                                              //Вызываем функцию закрытия поп-апа 
 }
 
 // Прикрепляем обработчик к форме:
