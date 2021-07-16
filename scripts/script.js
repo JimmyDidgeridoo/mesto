@@ -1,15 +1,16 @@
-let editButton = document.querySelector('.profile__edit-button');
-let showPopup = document.querySelector('.popup');
+const editButton = document.querySelector('.profile__edit-button');
+const editPopup = document.querySelector('.popup');
+const closeButton = document.querySelector('.popup__close-button');
 
-editButton.addEventListener('click', function() {
-    showPopup.classList.add('popup__opened');
-});
+function popupOpen() {
+    editPopup.classList.add('popup__opened');
+}
 
-let closeButton = document.querySelector('.popup__close-button')
-let closePopup = document.querySelector('.popup');
+function popupClose() {
+    editPopup.classList.remove('popup__opened');
+}
 
-closeButton.addEventListener('click', function() {
-    closePopup.classList.remove('popup__opened');
-});
+editButton.addEventListener('click', popupOpen);
+closeButton.addEventListener('click', popupClose);
 
 

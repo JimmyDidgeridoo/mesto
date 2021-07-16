@@ -14,7 +14,7 @@
 }
 
 .popup__form-input-text:focus {
-    color: transparent;
+    /*color: transparent;*/
     outline: none;
 }
 
