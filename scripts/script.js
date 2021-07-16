@@ -1,6 +1,6 @@
-const editButton = document.querySelector('.profile__edit-button');
-const editPopup = document.querySelector('.popup');
-const closeButton = document.querySelector('.popup__close-button');
+let editButton = document.querySelector('.profile__edit-button');
+let editPopup = document.querySelector('.popup');
+let closeButton = document.querySelector('.popup__close-button');
 
 function popupOpen() {
     editPopup.classList.add('popup__opened');
@@ -24,17 +24,18 @@ let jobInput = document.querySelector('.popup__form-input-job');// Воспол�
 
 // Обработчик «отправки» формы, хотя пока она никуда отправляться не будет
 function formSubmitHandler (evt) {
-    evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-                                                // Так мы можем определить свою логику отправки.
-                                                // О том, как это делать, расскажем позже.
+    evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы. Так мы можем определить свою логику отправки. О том, как это делать, расскажем позже.
 
     // Получите значение полей jobInput и nameInput из свойства value
-    console.log(nameInput.value);
-    console.log(jobInput.value);
-
     // Выберите элементы, куда должны быть вставлены значения полей
-
-    // Вставьте новые значения с помощью textContent
+        // Вставьте новые значения с помощью textContent
+    
+    let profileName = document.querySelector('.profile__name');
+    let profileJob = document.querySelector('.profile__job');
+    profileName.textContent = nameInput.value;
+    profileJob.textContent = jobInput.value;
+    popupClose();
+    
 }
 
 // Прикрепляем обработчик к форме:
