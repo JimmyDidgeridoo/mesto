@@ -1,11 +1,10 @@
 .element__name {
-    font-family: Inter;
     font-size: 24px;
     font-style: normal;
     font-weight: 900;
     line-height: 29px;
     color: rgba(0, 0, 0, 1);
-    width: 170px;
+    width: 190px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
