@@ -1,6 +1,7 @@
 .element__text {
-    align-items: center;
     display: flex;
-    position: relative;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 246px;
     padding: 0 15px 0 21px;
 }
