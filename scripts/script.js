@@ -13,8 +13,8 @@ let nameInput = document.querySelector('.popup__form-input-text_name');
 let jobInput = document.querySelector('.popup__form-input-text_job'); // Воспользуйтесь инструментом .querySelector()
 
 function popupOpen() {
-    nameInput.value = profileName.innerHTML;
-    jobInput.value = profileJob.innerHTML;
+    nameInput.value = profileName.textContent;
+    jobInput.value = profileJob.textContent;
     editPopup.classList.add('popup__opened');
 }
 
