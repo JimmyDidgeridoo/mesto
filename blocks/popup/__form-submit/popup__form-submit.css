@@ -9,6 +9,7 @@
     border-radius: 2px;
     border: none;
     color: #fff;
+    cursor: pointer;
     transition: .3s;
 }
 

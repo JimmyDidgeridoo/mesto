@@ -15,11 +15,11 @@ let jobInput = document.querySelector('.popup__form-input-text_job'); // Вос�
 function popupOpen() {
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
-    editPopup.classList.add('popup__opened');
+    editPopup.classList.add('popup_opened');
 }
 
 function popupClose() {
-    editPopup.classList.remove('popup__opened');
+    editPopup.classList.remove('popup_opened');
 }
 
 editButton.addEventListener('click', popupOpen);
