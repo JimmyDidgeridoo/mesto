@@ -1,4 +1,4 @@
-.popup__form-input-text {
+.popup__form-input {
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -13,6 +13,6 @@
     overflow: hidden;
 }
 
-.popup__form-input-text:focus {
+.popup__form-input:focus {
     outline: none;
 }
