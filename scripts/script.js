@@ -1,16 +1,23 @@
 const formElement = document.querySelector('.popup__form');
 
+//форма редактирования
 const editButton = document.querySelector('.profile__edit-button');
 const closeButtonEdit = document.querySelector('.popup__close_button_edit');
 const editPopup = document.querySelector('.popup_form_edit');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
 
+//добавление фото
 const addButton = document.querySelector('.profile__add-button');
 const closeButtonAdd = document.querySelector('.popup__close_button_add');
 const addPopup = document.querySelector('.popup_form_add');
 const nameInput = document.querySelector('.popup__form-input_text_name');
-const jobInput = document.querySelector('.popup__form-input_text_job'); 
+const jobInput = document.querySelector('.popup__form-input_text_job');
+
+//img popup
+const elementImgZoom = document.querySelector('.element__image');
+const imgPopup = document.querySelector('.popup_form_img');
+const closeButtonImg = document.querySelector('.popup__close_button_img');
 
 
 const initialCards = [{
@@ -66,18 +73,18 @@ closeButtonAdd.addEventListener('click', function () {
 });
 
 function formEditSubmitHandler(evt) {
-    evt.preventDefault(); 
-    profileName.textContent = nameInput.value;                 
+    evt.preventDefault();
+    profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
-    closePopup(editPopup);                                              
+    closePopup(editPopup);
 }
 
 formElement.addEventListener('submit', formEditSubmitHandler);
 
 function formAddSubmitHandler(evt) {
-    evt.preventDefault(); 
+    evt.preventDefault();
     //тут будет много красивого кода
-    closePopup(addPopup);                                              
+    closePopup(addPopup);
 }
 
 formElement.addEventListener('submit', formAddSubmitHandler);
@@ -91,7 +98,7 @@ function likePicture(evt) {
 
 //лайкаем
 const elementsLike = document.querySelectorAll('.element__like');
-elementsLike.forEach((item) =>  {
+elementsLike.forEach((item) => {
     item.addEventListener('click', likePicture);
 });
 
@@ -103,7 +110,7 @@ function deletePicture(evt) {
 
 //удаляем
 const elementsRemove = document.querySelectorAll('.element__remove');
-elementsRemove.forEach((item) =>  {
+elementsRemove.forEach((item) => {
     item.addEventListener('click', deletePicture);
 });
 
@@ -112,7 +119,19 @@ elementsRemove.forEach((item) =>  {
 //функция попапа картинки - заготовка
 function popupPicture(evt) {
     evt.preventDefault();
-    const cardName = evt.target.parentElement.querySelector('.element__name').textContent;
-    const url = evt.target.getAttribute('src');
+    openPopup(imgPopup);
+
+    closeButtonImg.addEventListener('click', function () {
+        closePopup(imgPopup);
+    });
 }
 
+const elementsImgZoom = document.querySelectorAll('.element__image');
+elementsImgZoom.forEach((item) => {
+    item.addEventListener('click', popupPicture);
+});
+
+/*const elementImgZoom = document.querySelector('.element__image');
+const imgPopup = document.querySelector('.popup_form_img');
+const closeButtonImg = document.querySelector('.popup__close_button_img');
+*/
