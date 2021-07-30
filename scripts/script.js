@@ -114,13 +114,15 @@ elementsRemove.forEach((item) => {
     item.addEventListener('click', deletePicture);
 });
 
-
-
-//функция попапа картинки - заготовка
+//функция попапа картинки 
 function popupPicture(evt) {
     evt.preventDefault();
+    let imgLink = evt.target.getAttribute('src');
+    let imgCaption = evt.target.getAttribute('alt');
+    let imgZoom = document.querySelector('.popup__img');
+    //const imgZoomCaption = document.querySelector('.popup__figcaption');
+    imgZoom.setAttribute('src', imgLink);
     openPopup(imgPopup);
-
     closeButtonImg.addEventListener('click', function () {
         closePopup(imgPopup);
     });
