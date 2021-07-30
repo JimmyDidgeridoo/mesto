@@ -1,65 +1,118 @@
-const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-  ];
+const formElement = document.querySelector('.popup__form');
 
-let editButton = document.querySelector('.profile__edit-button');
-let closeButton = document.querySelector('.popup__close-button');
-let editPopup = document.querySelector('.popup');
-let profileName = document.querySelector('.profile__name');
-let profileJob = document.querySelector('.profile__job');
+const editButton = document.querySelector('.profile__edit-button');
+const closeButtonEdit = document.querySelector('.popup__close_button_edit');
+const editPopup = document.querySelector('.popup_form_edit');
+const profileName = document.querySelector('.profile__name');
+const profileJob = document.querySelector('.profile__job');
 
-// Находим форму в DOM
-let formElement = document.querySelector('.popup__form');// Воспользуйтесь методом querySelector()
+const addButton = document.querySelector('.profile__add-button');
+const closeButtonAdd = document.querySelector('.popup__close_button_add');
+const addPopup = document.querySelector('.popup_form_add');
+const nameInput = document.querySelector('.popup__form-input_text_name');
+const jobInput = document.querySelector('.popup__form-input_text_job'); 
 
-// Находим поля формы в DOM
-let nameInput = document.querySelector('.popup__form-input_text_name');
-// Воспользуйтесь инструментом .querySelector()
-let jobInput = document.querySelector('.popup__form-input_text_job'); // Воспользуйтесь инструментом .querySelector()
 
-function popupOpen() {
+const initialCards = [{
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+},
+{
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+},
+{
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+},
+{
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+},
+{
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+},
+{
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+}
+];
+
+function openPopup(popupElement) {
+    popupElement.classList.add('popup_opened');
+}
+
+function closePopup(popupElement) {
+    popupElement.classList.remove('popup_opened');
+}
+
+editButton.addEventListener('click', function () {
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
-    editPopup.classList.add('popup_opened');
-}
+    openPopup(editPopup); // открываем попап редактирования
+});
 
-function popupClose() {
-    editPopup.classList.remove('popup_opened');
-}
+closeButtonEdit.addEventListener('click', function () {
+    closePopup(editPopup);
+});
 
-editButton.addEventListener('click', popupOpen);
-closeButton.addEventListener('click', popupClose);
+addButton.addEventListener('click', function () {
+    openPopup(addPopup);
+});
 
-// Обработчик «отправки» формы, хотя пока она никуда отправляться не будет
-function formSubmitHandler(evt) {
-    evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы. Так мы можем определить свою логику отправки. О том, как это делать, расскажем позже.
-    profileName.textContent = nameInput.value;                 // Вставьте новые значения с помощью textContent
+closeButtonAdd.addEventListener('click', function () {
+    closePopup(addPopup);
+});
+
+function formEditSubmitHandler(evt) {
+    evt.preventDefault(); 
+    profileName.textContent = nameInput.value;                 
     profileJob.textContent = jobInput.value;
-    popupClose();                                              //Вызываем функцию закрытия поп-апа 
+    closePopup(editPopup);                                              
 }
 
-// Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
-formElement.addEventListener('submit', formSubmitHandler);
+formElement.addEventListener('submit', formEditSubmitHandler);
+
+function formAddSubmitHandler(evt) {
+    evt.preventDefault(); 
+    //тут будет много красивого кода
+    closePopup(addPopup);                                              
+}
+
+formElement.addEventListener('submit', formAddSubmitHandler);
+
+//функция лайка
+function likePicture(evt) {
+    evt.preventDefault();
+    const likePictureClass = 'element__like_active';
+    evt.target.classList.toggle(likePictureClass);
+}
+
+//лайкаем
+const elementsLike = document.querySelectorAll('.element__like');
+elementsLike.forEach((item) =>  {
+    item.addEventListener('click', likePicture);
+});
+
+//функция удаления картинки
+function deletePicture(evt) {
+    evt.preventDefault();
+    evt.target.parentElement.remove();
+};
+
+//удаляем
+const elementsRemove = document.querySelectorAll('.element__remove');
+elementsRemove.forEach((item) =>  {
+    item.addEventListener('click', deletePicture);
+});
+
+
+
+//функция попапа картинки - заготовка
+function popupPicture(evt) {
+    evt.preventDefault();
+    const cardName = evt.target.parentElement.querySelector('.element__name').textContent;
+    const url = evt.target.getAttribute('src');
+}
+
