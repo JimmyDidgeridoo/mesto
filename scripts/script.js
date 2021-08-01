@@ -136,10 +136,18 @@ function addImg(src, name) {
     newImg.querySelector('.element__name').textContent = name;
     gallery.prepend(newImg);
 
+    newImg.querySelector('.element__remove').addEventListener('click', (evt) => { //удаляем
+        evt.target.parentElement.remove();
+    });
+    newImg.querySelector('.element__like').addEventListener('click', (evt) => { //лайкаем
+        evt.target.classList.toggle('element__like_active');
+    });
+}
+
     /*likePicture();
     deletePicture;
     popupPicture;*/
-}
+
 
 //изображаем
 initialCards.forEach(function (item) {
