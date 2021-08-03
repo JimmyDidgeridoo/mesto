@@ -14,11 +14,6 @@ const addPopup = document.querySelector('.popup_form_add');
 const nameInput = document.querySelector('.popup__form-input_text_name');
 const jobInput = document.querySelector('.popup__form-input_text_job');
 
-//img popup
-const elementImgZoom = document.querySelector('.element__image');
-const imgPopup = document.querySelector('.popup_form_img');
-const closeButtonImg = document.querySelector('.popup__close_button_img');
-
 function openPopup(popupElement) {
     popupElement.classList.add('popup_opened');
 }
@@ -54,50 +49,43 @@ function formEditSubmitHandler(evt) {
 
 editPopup.addEventListener('submit', formEditSubmitHandler);
 
-//функция лайка
-function likePicture(evt) {
-    evt.preventDefault();
-    const likePictureClass = 'element__like_active';
-    evt.target.classList.toggle(likePictureClass);
-}
+//img popup
+const elementImgZoom = document.querySelector('.element__image');
+const imgPopup = document.querySelector('.popup_form_img');
+const closeButtonImg = document.querySelector('.popup__close_button_img');
+const imgArray = document.querySelector('.elements');
+const imgZoom = document.querySelector('.popup__img');
+const imgZoomCaption = document.querySelector('.popup__figcaption');
 
-//лайкаем
-const elementsLike = document.querySelectorAll('.element__like');
-elementsLike.forEach((item) => {
-    item.addEventListener('click', likePicture);
-});
-
-//функция удаления картинки
-function deletePicture(evt) {
-    evt.preventDefault();
-    evt.target.parentElement.remove();
-};
-
-//удаляем
-const elementsRemove = document.querySelectorAll('.element__remove');
-elementsRemove.forEach((item) => {
-    item.addEventListener('click', deletePicture);
-});
 
 //функция попапа картинки 
-function popupPicture(evt) {
-    evt.preventDefault();
-    let imgLink = evt.target.getAttribute('src');
-    let imgCaption = evt.target.getAttribute('alt');
-    let imgZoom = document.querySelector('.popup__img');
-    //const imgZoomCaption = document.querySelector('.popup__figcaption');
-    imgZoom.setAttribute('src', imgLink);
-    openPopup(imgPopup);
-    closeButtonImg.addEventListener('click', function () {
-        closePopup(imgPopup);
-    });
-}
+function popupPicture() {
+    imgArray.addEventListener('click', function (evt) {
+        if (!evt.target.matches('.element__image')) {
+            return;
+        }
+        else {
+            const imgLink = evt.target.getAttribute('src');
+            imgZoom.setAttribute('src', imgLink);
+            console.log(imgZoom.src)
+/*            const imgText = evt.target.getAttribute('alt');
+            imgZoomCaption.textContent = imgText.textContent;
+            imgZoomCaption.textContent = evt.target.parentElement.querySelector('.element__name').textContent;*/
 
+            openPopup(imgPopup);
+            closeButtonImg.addEventListener('click', function () {
+                closePopup(imgPopup);
+            });
+        }
+    })
+
+}
+/*
 const elementsImgZoom = document.querySelectorAll('.element__image');
 elementsImgZoom.forEach((item) => {
     item.addEventListener('click', popupPicture);
 });
-
+*/
 const gallery = document.querySelector('.elements');
 
 const initialCards = [{
@@ -139,15 +127,13 @@ function addImg(src, name) {
     newImg.querySelector('.element__remove').addEventListener('click', (evt) => { //удаляем
         evt.target.parentElement.remove();
     });
+
     newImg.querySelector('.element__like').addEventListener('click', (evt) => { //лайкаем
         evt.target.classList.toggle('element__like_active');
     });
+
+    popupPicture();
 }
-
-    /*likePicture();
-    deletePicture;
-    popupPicture;*/
-
 
 //изображаем
 initialCards.forEach(function (item) {
