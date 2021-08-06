@@ -69,8 +69,8 @@ function popupPicture() {
             imgZoom.setAttribute('src', imgLink);
             console.log(imgZoom.src)
 /*            const imgText = evt.target.getAttribute('alt');
-            imgZoomCaption.textContent = imgText.textContent;
-            imgZoomCaption.textContent = evt.target.parentElement.querySelector('.element__name').textContent;*/
+            imgZoomCaption.textContent = imgText.textContent;*/
+            imgZoomCaption.textContent = evt.target.parentElement.querySelector('.element__name').textContent;
 
             openPopup(imgPopup);
             closeButtonImg.addEventListener('click', function () {
