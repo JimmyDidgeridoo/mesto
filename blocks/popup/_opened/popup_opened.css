@@ -1,10 +1,15 @@
+/*
 .popup_opened {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-/*
-.popup__opened {
-    display: block;
-}
 */
+.popup_opened {
+    visibility: visible;
+    position: fixed;
+    z-index: 999;
+    opacity: 1;
+    transition: visibility .8s, opacity .8s ease-in-out;
+  }
+  
