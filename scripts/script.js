@@ -187,7 +187,11 @@ const inputLink = document.querySelector('.popup__form-input_text_url');
 
 function handleProfileFormAdd(evt) {
     evt.preventDefault();
-    addImg(inputLink.value, inputImgName.value);
+    const ImgAdded = {
+        name: inputImgName.value,
+        link: inputLink.value
+      };
+    addImg(ImgAdded);
     inputImgName.value = '';
     inputLink.value = '';
     closePopup(addPopup);
