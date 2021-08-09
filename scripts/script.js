@@ -80,8 +80,6 @@ closeButtonImg.addEventListener('click', function () {
     closePopup(imgPopup);
 });
 
-const gallery = document.querySelector('.elements');
-
 const initialCards = [
     {
         name: 'Архыз',
@@ -109,6 +107,7 @@ const initialCards = [
     }
 ];
 
+/*
 function addImg(src, name) {
 
     const newImg = elementTemplate.firstElementChild.cloneNode(true);
@@ -133,6 +132,32 @@ function addImg(src, name) {
 initialCards.forEach(function (item) {
     addImg(item.link, item.name);
 });
+*/
+
+
+function createImg(src, name) {
+    const newImg = elementTemplate.firstElementChild.cloneNode(true);
+
+    newImg.querySelector('.element__image').src = src;
+    newImg.querySelector('.element__image').alt = name;
+    newImg.querySelector('.element__name').textContent = name;
+
+    return newImg;
+}
+
+const gallery = document.querySelector('.elements');
+function addImg(card) {
+  const cardImg = createImg(card.link, card.name);
+  gallery.prepend(cardImg);
+}
+
+initialCards.forEach(function (item) {
+    addImg(item);
+});
+
+
+
+
 
 const inputImgName = document.querySelector('.popup__form-input_text_img-name');
 const inputLink = document.querySelector('.popup__form-input_text_url');
