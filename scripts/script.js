@@ -81,34 +81,33 @@ const gallery = document.querySelector('.elements');
 
 const initialCards = [
     {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+        name: 'Архыз',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
     },
     {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+        name: 'Челябинская область',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
     },
     {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+        name: 'Иваново',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
     },
     {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+        name: 'Камчатка',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
     },
     {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+        name: 'Холмогорский район',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
     },
     {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+        name: 'Байкал',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
-  ];
+];
 
 function addImg(src, name) {
 
-    //const elementTemplate = document.getElementById('element-template').content;
     const newImg = elementTemplate.firstElementChild.cloneNode(true);
 
     newImg.querySelector('.element__image').src = src;
@@ -132,14 +131,16 @@ initialCards.forEach(function (item) {
     addImg(item.link, item.name);
 });
 
-function formAddSubmitHandler(evt) {
+const inputImgName = document.querySelector('.popup__form-input_text_img-name');
+const inputLink = document.querySelector('.popup__form-input_text_url');
+
+function handleProfileFormAdd(evt) {
     evt.preventDefault();
-    const inputImgName = document.querySelector('.popup__form-input_text_img-name');
-    const inputLink = document.querySelector('.popup__form-input_text_url');
     addImg(inputLink.value, inputImgName.value);
     inputImgName.value = '';
     inputLink.value = '';
     closePopup(addPopup);
 }
 
-addPopup.addEventListener('submit', formAddSubmitHandler);
+//handleProfileFormEdit
+addPopup.addEventListener('submit', handleProfileFormAdd);
