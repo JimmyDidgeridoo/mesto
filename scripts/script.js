@@ -58,7 +58,7 @@ const imgZoom = document.querySelector('.popup__img');
 const imgZoomCaption = document.querySelector('.popup__figcaption');
 
 //функция попапа картинки 
-function popupPicture() {
+function showPopupPicture() {
     imgArray.addEventListener('click', function (evt) {
         if (!evt.target.matches('.element__image')) {
             return;
@@ -123,7 +123,7 @@ function addImg(src, name) {
         evt.target.classList.toggle('element__like_active');
     });
 
-    popupPicture();
+    showPopupPicture();
 }
 
 //изображаем
