@@ -1,4 +1,5 @@
 const formElement = document.querySelector('.popup__form');
+const elementTemplate = document.getElementById('element-template').content;
 
 //форма редактирования
 const editButton = document.querySelector('.profile__edit-button');
@@ -107,7 +108,7 @@ const initialCards = [
 
 function addImg(src, name) {
 
-    const elementTemplate = document.getElementById('element-template').content;
+    //const elementTemplate = document.getElementById('element-template').content;
     const newImg = elementTemplate.firstElementChild.cloneNode(true);
 
     newImg.querySelector('.element__image').src = src;
