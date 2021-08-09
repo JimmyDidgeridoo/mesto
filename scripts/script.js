@@ -40,14 +40,14 @@ closeButtonAdd.addEventListener('click', function () {
     closePopup(addPopup);
 });
 
-function formEditSubmitHandler(evt) {
+function handleProfileFormEdit(evt) {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
     closePopup(editPopup);
 }
 
-editPopup.addEventListener('submit', formEditSubmitHandler);
+editPopup.addEventListener('submit', handleProfileFormEdit);
 
 //img popup
 const elementImgZoom = document.querySelector('.element__image');
