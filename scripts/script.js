@@ -134,7 +134,7 @@ initialCards.forEach(function (item) {
 });
 */
 
-
+//создаем
 function createImg(src, name) {
     const newImg = elementTemplate.firstElementChild.cloneNode(true);
 
@@ -146,18 +146,41 @@ function createImg(src, name) {
 }
 
 const gallery = document.querySelector('.elements');
+
+//добавляем
 function addImg(card) {
-  const cardImg = createImg(card.link, card.name);
-  gallery.prepend(cardImg);
+    const cardImg = createImg(card.link, card.name);
+    gallery.prepend(cardImg);
 }
 
+//выводим
 initialCards.forEach(function (item) {
     addImg(item);
 });
 
+//лайкаем
+function likeImg(evt) {
+    if (!evt.target.matches('.element__like')) {
+        return;
+    }
+    else {
+        evt.target.classList.toggle('element__like_active');
+    }
+}
 
+gallery.addEventListener('click', likeImg);
 
+//удаляем
+function deleteImg(evt) {
+    if (!evt.target.matches('.element__remove')) {
+        return;
+    }
+    else {
+        evt.target.closest('.element').remove();
+    }
+}
 
+gallery.addEventListener('click', deleteImg);
 
 const inputImgName = document.querySelector('.popup__form-input_text_img-name');
 const inputLink = document.querySelector('.popup__form-input_text_url');
