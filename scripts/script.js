@@ -1,4 +1,4 @@
-const formElement = document.querySelector('.popup__form');
+//const formElement = document.querySelector('.popup__form');
 const elementTemplate = document.getElementById('element-template').content;
 
 //форма редактирования
@@ -66,16 +66,19 @@ function showPopupPicture() {
         }
         else {
             const imgLink = evt.target.getAttribute('src');
+            const imgAlt = evt.target.getAttribute('alt');
             imgZoom.setAttribute('src', imgLink);
-            imgZoomCaption.textContent = evt.target.parentElement.querySelector('.element__name').textContent;
+            imgZoom.setAttribute('alt', imgAlt);
+            imgZoomCaption.textContent = evt.target.closest('.element').textContent;
             openPopup(imgPopup);
-            closeButtonImg.addEventListener('click', function () {
-                closePopup(imgPopup);
-            });
         }
     })
 
 }
+
+closeButtonImg.addEventListener('click', function () {
+    closePopup(imgPopup);
+});
 
 const gallery = document.querySelector('.elements');
 
@@ -111,12 +114,12 @@ function addImg(src, name) {
     const newImg = elementTemplate.firstElementChild.cloneNode(true);
 
     newImg.querySelector('.element__image').src = src;
-    //newImg.querySelector('.element__image').alt = name;
+    newImg.querySelector('.element__image').alt = name;
     newImg.querySelector('.element__name').textContent = name;
     gallery.prepend(newImg);
 
     newImg.querySelector('.element__remove').addEventListener('click', (evt) => { //удаляем
-        evt.target.parentElement.remove();
+        evt.target.closest('.element').remove();
     });
 
     newImg.querySelector('.element__like').addEventListener('click', (evt) => { //лайкаем
