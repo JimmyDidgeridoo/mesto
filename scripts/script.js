@@ -76,6 +76,8 @@ function showPopupPicture() {
 
 }
 
+showPopupPicture();
+
 closeButtonImg.addEventListener('click', function () {
     closePopup(imgPopup);
 });
