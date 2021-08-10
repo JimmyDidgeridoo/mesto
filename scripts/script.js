@@ -88,27 +88,21 @@ function handleProfileFormEdit(evt) {
 
 editPopup.addEventListener('submit', handleProfileFormEdit);
 
-
-
 //функция попапа картинки 
-function showPopupPicture() {
-    imgArray.addEventListener('click', function (evt) {
-        if (!evt.target.matches('.element__image')) {
-            return;
-        }
-        else {
-            const imgLink = evt.target.getAttribute('src');
-            const imgAlt = evt.target.getAttribute('alt');
-            imgZoom.setAttribute('src', imgLink);
-            imgZoom.setAttribute('alt', imgAlt);
-            imgZoomCaption.textContent = evt.target.closest('.element').textContent;
-            openPopup(imgPopup);
-        }
-    })
+function showPopupPicture(evt) {
 
+    if (!evt.target.matches('.element__image')) {
+        return;
+    }
+    else {
+        const imgLink = evt.target.getAttribute('src');
+        const imgAlt = evt.target.getAttribute('alt');
+        imgZoom.setAttribute('src', imgLink);
+        imgZoom.setAttribute('alt', imgAlt);
+        imgZoomCaption.textContent = evt.target.closest('.element').textContent;
+        openPopup(imgPopup);
+    }
 }
-
-showPopupPicture();
 
 closeButtonImg.addEventListener('click', function () {
     closePopup(imgPopup);
@@ -124,8 +118,6 @@ function likeImg(evt) {
     }
 }
 
-//gallery.addEventListener('click', likeImg);
-
 //удаляем
 function deleteImg(evt) {
     if (!evt.target.matches('.element__remove')) {
@@ -135,9 +127,6 @@ function deleteImg(evt) {
         evt.target.closest('.element').remove();
     }
 }
-
-//gallery.addEventListener('click', deleteImg);
-
 
 //создаем
 function createImg(src, name) {
@@ -150,7 +139,7 @@ function createImg(src, name) {
     //вешаем обработчики
     newImg.querySelector('.element__like').addEventListener('click', likeImg);
     newImg.querySelector('.element__remove').addEventListener('click', deleteImg);
-    //newImg.querySelector('.element__image').addEventListener('click', showPopupPicture);
+    newImg.querySelector('.element__image').addEventListener('click', showPopupPicture);
 
     return newImg;
 }
@@ -171,7 +160,7 @@ function handleProfileFormAdd(evt) {
     const imgAdded = {
         name: inputImgName.value,
         link: inputLink.value
-      };
+    };
     addImg(imgAdded);
     inputImgName.value = '';
     inputLink.value = '';
