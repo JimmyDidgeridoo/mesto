@@ -1,4 +1,29 @@
-//const formElement = document.querySelector('.popup__form');
+const initialCards = [
+    {
+        name: 'Архыз',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+        name: 'Челябинская область',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+        name: 'Иваново',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+        name: 'Камчатка',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+        name: 'Холмогорский район',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+        name: 'Байкал',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+];
 const elementTemplate = document.getElementById('element-template').content;
 
 //форма редактирования
@@ -14,6 +39,19 @@ const closeButtonAdd = document.querySelector('.popup__close_button_add');
 const addPopup = document.querySelector('.popup_form_add');
 const nameInput = document.querySelector('.popup__form-input_text_name');
 const jobInput = document.querySelector('.popup__form-input_text_job');
+
+//img popup
+const elementImgZoom = document.querySelector('.element__image');
+const imgPopup = document.querySelector('.popup_form_img');
+const closeButtonImg = document.querySelector('.popup__close_button_img');
+const imgArray = document.querySelector('.elements');
+const imgZoom = document.querySelector('.popup__img');
+const imgZoomCaption = document.querySelector('.popup__figcaption');
+
+const gallery = document.querySelector('.elements');
+
+const inputImgName = document.querySelector('.popup__form-input_text_img-name');
+const inputLink = document.querySelector('.popup__form-input_text_url');
 
 function openPopup(popupElement) {
     popupElement.classList.add('popup_opened');
@@ -50,13 +88,7 @@ function handleProfileFormEdit(evt) {
 
 editPopup.addEventListener('submit', handleProfileFormEdit);
 
-//img popup
-const elementImgZoom = document.querySelector('.element__image');
-const imgPopup = document.querySelector('.popup_form_img');
-const closeButtonImg = document.querySelector('.popup__close_button_img');
-const imgArray = document.querySelector('.elements');
-const imgZoom = document.querySelector('.popup__img');
-const imgZoomCaption = document.querySelector('.popup__figcaption');
+
 
 //функция попапа картинки 
 function showPopupPicture() {
@@ -82,59 +114,30 @@ closeButtonImg.addEventListener('click', function () {
     closePopup(imgPopup);
 });
 
-const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+//лайкаем
+function likeImg(evt) {
+    if (!evt.target.matches('.element__like')) {
+        return;
     }
-];
-
-/*
-function addImg(src, name) {
-
-    const newImg = elementTemplate.firstElementChild.cloneNode(true);
-
-    newImg.querySelector('.element__image').src = src;
-    newImg.querySelector('.element__image').alt = name;
-    newImg.querySelector('.element__name').textContent = name;
-    gallery.prepend(newImg);
-
-    newImg.querySelector('.element__remove').addEventListener('click', (evt) => { //удаляем
-        evt.target.closest('.element').remove();
-    });
-
-    newImg.querySelector('.element__like').addEventListener('click', (evt) => { //лайкаем
+    else {
         evt.target.classList.toggle('element__like_active');
-    });
-
-    showPopupPicture();
+    }
 }
 
-//изображаем
-initialCards.forEach(function (item) {
-    addImg(item.link, item.name);
-});
-*/
+//gallery.addEventListener('click', likeImg);
+
+//удаляем
+function deleteImg(evt) {
+    if (!evt.target.matches('.element__remove')) {
+        return;
+    }
+    else {
+        evt.target.closest('.element').remove();
+    }
+}
+
+//gallery.addEventListener('click', deleteImg);
+
 
 //создаем
 function createImg(src, name) {
@@ -144,10 +147,13 @@ function createImg(src, name) {
     newImg.querySelector('.element__image').alt = name;
     newImg.querySelector('.element__name').textContent = name;
 
+    //вешаем обработчики
+    newImg.querySelector('.element__like').addEventListener('click', likeImg);
+    newImg.querySelector('.element__remove').addEventListener('click', deleteImg);
+    //newImg.querySelector('.element__image').addEventListener('click', showPopupPicture);
+
     return newImg;
 }
-
-const gallery = document.querySelector('.elements');
 
 //добавляем
 function addImg(card) {
@@ -160,44 +166,16 @@ initialCards.forEach(function (item) {
     addImg(item);
 });
 
-//лайкаем
-function likeImg(evt) {
-    if (!evt.target.matches('.element__like')) {
-        return;
-    }
-    else {
-        evt.target.classList.toggle('element__like_active');
-    }
-}
-
-gallery.addEventListener('click', likeImg);
-
-//удаляем
-function deleteImg(evt) {
-    if (!evt.target.matches('.element__remove')) {
-        return;
-    }
-    else {
-        evt.target.closest('.element').remove();
-    }
-}
-
-gallery.addEventListener('click', deleteImg);
-
-const inputImgName = document.querySelector('.popup__form-input_text_img-name');
-const inputLink = document.querySelector('.popup__form-input_text_url');
-
 function handleProfileFormAdd(evt) {
     evt.preventDefault();
-    const ImgAdded = {
+    const imgAdded = {
         name: inputImgName.value,
         link: inputLink.value
       };
-    addImg(ImgAdded);
+    addImg(imgAdded);
     inputImgName.value = '';
     inputLink.value = '';
     closePopup(addPopup);
 }
 
-//handleProfileFormEdit
 addPopup.addEventListener('submit', handleProfileFormAdd);
